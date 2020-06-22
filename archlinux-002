@@ -1,0 +1,10 @@
+MBR Windows 10 + Archlinux Dualboot with LTS kernel + swapfile
+
+pacstrap /mnt base base-devel linux-lts linux-firmware nano grub os-prober ntfs-3g mtools dosfstools dhcpcd xorg-server
+
+dd if=/dev/zero of=/swapfile bs=1M count=2048 status=progress
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+
+/etc/fstab >>> /swapfile none swap defaults 0 0
