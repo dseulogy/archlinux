@@ -1,0 +1,39 @@
+UEFI
+
+loadkeys trq
+
+fdisk (gdisk)
+
+/dev/sda1 300MB FAT32 file system
+/dev/sda2 300GB EXT4  file system
+
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
+
+mount /dev/sda2 /mnt
+
+mkdir /mnt/boot/EFI
+
+mount /dev/sda1 /mnt/boot/EFI
+
+pacstrap /mnt 
+
+base (base-devel)
+
+linux (linux-lts,linux-zen,linux-hardened)
+
+linux-firmware (xf86-video-intel,xf86-video-amdgpu,nvidia)
+
+nano (vim)
+
+sudo
+
+grub (efibootmgr,mtools,dosfstools,os-prober,ntfs-3g)
+
+dhcpcd (networkmanager,network-manager-applet)
+
+xorg-server (xorg)
+
+gdm (sddm,lightdm,lxdm)
+
+gnome (plasma,xfce4,lxde)
